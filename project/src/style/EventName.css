@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif&family=Titillium+Web:wght@300&display=swap');
+
+
+.container {
+    text-align: left;
+    margin: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .vertical-input {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .custom-font {
+    font-family: 'Titillium Web', sans-serif;
+  }
+  
+
+  input {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  

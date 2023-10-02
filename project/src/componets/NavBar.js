@@ -11,7 +11,7 @@ function NavBar() {
 
   return (
     <header>
-        <h3> MeetSync </h3>
+        <h3> MeetSync Simplify Scheduling </h3>
         <nav ref = {navRef}>
             <a href = "/#"> Create An Event Name </a>
             <a href = "/#"> Choose Date & Time </a>
