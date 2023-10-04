@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
-import NavBar from './componets/NavBar';
-import EventForm from './componets/EventName';
+import NavBar from './componentss/NavBar';
+import EventForm from './componentss/EventName';
 
 function App() {
   return (
