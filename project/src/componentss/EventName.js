@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import "../style/EventName.css";
-import NextButton from './NextButton'; // Import the NextButton component
+import NextButton from './NextButton';
+import BackButton from './BackButton';
+
 
 function EventForm() {
   // Create a state variable to store the event name
   const [eventName, setEventName] = useState('');
 
-  // Event handler to update the eventName state when the input changes
+// Event handler to update the eventName state when the input changes
   const handleEventNameChange = (e) => {
-    setEventName(e.target.value);
-  };
+  setEventName(e.target.value);
+};
 
   // Callback function to save the event name
   const saveEventName = () => {
-    // You can perform any action here to save the event name, e.g., to a database or state.
-    console.log('Event Name Saved:', eventName);
+    console.log('Test', eventName);
   };
 
   return (
@@ -33,8 +34,11 @@ function EventForm() {
             style={{ width: '150px' }}
           />
         </div>
-
-        <NextButton onClick={saveEventName} /> {/* Render the NextButton and pass the onSave callback */}
+        <div className='button-container'>
+         <NextButton onClick={saveEventName} /> 
+       
+        <BackButton/>
+        </div>
       </form>
     </div>
   );
