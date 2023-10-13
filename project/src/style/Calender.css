@@ -1,5 +1,6 @@
 .calender{
-    width: 500px; /* Adjust the width as needed */
-    height: auto; /* Adjust the height as needed */
+    width: 200px; /* Adjust the width as needed */
+    height: 400px; /* Adjust the height as needed */
     overflow: auto;
+    float: left;
 }

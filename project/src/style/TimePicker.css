@@ -1,0 +1,13 @@
+.time-picker{
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Adjust the height as needed */
+    font-size: 14px;
+    float: left;
+}
+
+.time-picker-container{
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    margin: 10px; 
+}
