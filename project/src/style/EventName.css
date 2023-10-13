@@ -33,5 +33,15 @@
   .center {
     text-align: center;
   }
+
+  .button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-evenly ;
+    padding: 0 500px;
+  }
   
   

@@ -29,3 +29,6 @@ function NavBar() {
 }
 
 export default NavBar
+
+
+//<Route path="/datetime-picker" element={<StaticDateTimePickerLandscape />} />
