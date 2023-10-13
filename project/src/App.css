@@ -1,0 +1,10 @@
+.event-list{
+    padding: 2px;
+    margin: 2px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.event-list h1{
+    font-size: medium;
+}
