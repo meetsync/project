@@ -40,8 +40,8 @@
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-between ;
-    padding: 0 520px;
+    justify-content: space-evenly ;
+    padding: 0 500px;
   }
   
   

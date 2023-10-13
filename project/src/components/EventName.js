@@ -35,9 +35,9 @@ function EventForm() {
           />
         </div>
         <div className='button-container'>
+         <BackButton/>
          <NextButton onClick={saveEventName} /> 
        
-        <BackButton/>
         </div>
       </form>
     </div>
