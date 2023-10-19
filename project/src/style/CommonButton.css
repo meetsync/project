@@ -5,5 +5,19 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px 0;
+    width: 125px;
   }
+
+  .user-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Vertically align to the bottom */
+    align-items: flex-end; /* Align to the right side */
+    position: fixed;
+    bottom: 200px; /* Adjust to control the distance from the bottom */
+    right: 200px;
+  }
+
+  
   

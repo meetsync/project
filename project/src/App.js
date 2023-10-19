@@ -1,16 +1,17 @@
 import './App.css';
 import './style/TimePicker.css'
+import './style/Calendar.css'
 import React from 'react'
 import './style/CommonButton.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Events from './pages/Events';
-//import StaticDateTimePickerLandscape from './components/Calender';
-import DatePicker from './components/Calender2.0';
 import TimePickerValue from './components/TimePicker';
+import UserButtons from './components/UserButtons';
+import Calender3 from './components/Calendar3.0';
 
-//<StaticDateTimePickerLandscape/>
+
 function App() {
   return (
     <React.Fragment>
@@ -20,10 +21,11 @@ function App() {
             <Route path='/' element={<Home/>}></Route>
             <Route path='/events' element={<Events/>}></Route>
           </Routes>
-          <DatePicker/>
-          <div className="time-picker-container">
+          <div className='calendar3'>
+          <Calender3/>
+          </div>
           <TimePickerValue className="time-picker" />
-        </div>
+        <UserButtons/>
       </BrowserRouter>
     </React.Fragment>
   );

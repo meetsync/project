@@ -11,6 +11,7 @@ export default function TimePickerValue() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimePicker', 'TimePicker']}>
+        <div className='time-pick-container'>
         <TimePicker
           label="Earliest possible"
           defaultValue={dayjs('2022-04-17T15:30')}
@@ -20,6 +21,7 @@ export default function TimePickerValue() {
           value={value}
           onChange={(newValue) => setValue(newValue)}
         />
+        </div>
       </DemoContainer>
     </LocalizationProvider>
   );

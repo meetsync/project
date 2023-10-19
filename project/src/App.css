@@ -1,0 +1,30 @@
+/*
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Wrap components to the next line on smaller screens
+}
+  
+.calender {
+  flex: 1; /* Allow the calendar to take up available space 
+  max-width: 200px; /* Set a maximum width for the calendar 
+  height: 400px;
+  overflow: auto;
+}
+
+.time-pick-container {
+  flex: 1; /* Allow the time picker to take up available space 
+  max-width: 200px; /* Set a maximum width for the time picker 
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack components vertically on smaller screens 
+  }
+
+  .calender, .time-picker {
+    max-width: 100%; /* Use full width on smaller screens 
+  }
+}
+*/
+
