@@ -40,16 +40,24 @@ function EventForm() {
               style={{ width: '150px' }}
             />
           </div>
+    
           <div className='button-container'>
             <BackButton />
             <NextButton onClick={saveEventName} />
           </div>
         </form>
       )}
+
+      {/* Always render the "Back" and "Next" buttons */}
+      <div className='button-container'>
+        <BackButton />
+        <NextButton onClick={saveEventName} />
+      </div>
     </div>
   );
 }
 
 export default EventForm;
+
 
 
