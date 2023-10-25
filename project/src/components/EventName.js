@@ -48,7 +48,7 @@ function EventForm() {
         </form>
       )}
 
-      {/* Always render the "Back" and "Next" buttons */}
+      {/* Always render the buttons */}
       <div className='button-container'>
         <BackButton />
         <NextButton onClick={saveEventName} />
