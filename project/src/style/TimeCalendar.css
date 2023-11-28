@@ -1,0 +1,40 @@
+/* TimeCalendar.css */
+.time-calendar {
+    margin: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .slot {
+    cursor: pointer;
+  }
+  
+  .slot.selected {
+    background-color: #FFD700;
+  }
+
+  /* TimeCalendar.css */
+.time-calendar.size {
+    margin: 20px auto;
+    width: 30%; /* Adjust the width as needed */
+    margin-top: -300px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+
+  
+  

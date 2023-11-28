@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../style/EventName.css";
 import NextButton from './NextButton';
-import BackButton from './BackButton';
+//import BackButton from './BackButton';
 
 function EventForm() {
   const [eventName, setEventName] = useState('');
@@ -40,19 +40,20 @@ function EventForm() {
               style={{ width: '150px' }}
             />
           </div>
-    
-          <div className='button-container'>
-            <BackButton />
+
+          <div /*className='button-container'*/>
+            {/*<BackButton />*/}
             <NextButton onClick={saveEventName} />
+
           </div>
         </form>
       )}
-
-      {/* Always render the buttons */}
+      {/* 
       <div className='button-container'>
         <BackButton />
         <NextButton onClick={saveEventName} />
       </div>
+      */}
     </div>
   );
 }

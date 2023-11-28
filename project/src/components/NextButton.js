@@ -5,7 +5,7 @@ const NextButton = (props) => {
 
   return (
     
-      <button className="common-button-container" onClick={props.onClick} >Next</button>
+      <button className="common-button-container" onClick={props.onClick} >Save</button>
     
   );
 }
