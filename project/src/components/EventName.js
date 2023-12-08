@@ -13,10 +13,37 @@ function EventForm() {
 
   const saveEventName = () => {
     setShowEventName(true);
+    handleSaveButtonClick(); // Call the function to save date and event name
   };
 
   const editEventName = () => {
     setShowEventName(false);
+  };
+
+  const handleSaveButtonClick = async () => {
+    try {
+      // Extract year, day, and month from the selectedDate
+
+      // Perform backend communication here using fetch or another method
+      const response = await fetch('your backend api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eventName }),
+      });
+
+      if (response.ok) {
+        // Handle successful response
+        console.log('Date and event name successfully sent to the backend!');
+      } else {
+        // Handle error response
+        console.error('Failed to send date and event name to the backend api');
+        console.log(eventName);
+      }
+    } catch (error) {
+      console.error('Error during backend communication:', error);
+    }
   };
 
   return (
@@ -41,24 +68,13 @@ function EventForm() {
             />
           </div>
 
-          <div /*className='button-container'*/>
-            {/*<BackButton />*/}
+          <div>
             <NextButton onClick={saveEventName} />
-
           </div>
         </form>
       )}
-      {/* 
-      <div className='button-container'>
-        <BackButton />
-        <NextButton onClick={saveEventName} />
-      </div>
-      */}
     </div>
   );
 }
 
 export default EventForm;
-
-
-

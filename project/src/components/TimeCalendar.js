@@ -21,6 +21,7 @@ class TimeCalendar extends Component {
   render() {
     const timeSlots = [
       '9:00 AM',
+      '9:30 AM',
       '10:00 AM',
       '11:00 AM',
       '12:00 PM',

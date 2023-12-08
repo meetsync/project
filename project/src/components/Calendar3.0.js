@@ -6,29 +6,33 @@ export default function Calender3() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const [selectedDates, setSelectedDates] = useState([today, tomorrow]);
+  const [selectedDate, setSelectedDate] = useState(today);
 
-  const handleDateChange = (newDates) => {
-    setSelectedDates(newDates);
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
   };
 
   const handleSaveButtonClick = async () => {
     try {
-      // Perform backend communication here using fetch or another method
-      const response = await fetch('Our API', {
+      // Extract year, day, and month from the selectedDate
+      const { year, day, month } = selectedDate;
+
+      // Perform backend communication here using fetch 
+      const response = await fetch('our api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ dates: selectedDates }),
+        body: JSON.stringify({ year, day, month }),
       });
-
+  
       if (response.ok) {
         // Handle successful response
-        console.log('Dates successfully sent to the backend!');
+        console.log('Date successfully sent to the backend!');
       } else {
         // Handle error response
-        console.error('Failed to send dates to the backend api not made yet');
+        console.error('Failed to send date to the backend api not made yet');
+        console.log(year, day, month);
       }
     } catch (error) {
       console.error('Error during backend communication:', error);
@@ -38,8 +42,7 @@ export default function Calender3() {
   return (
     <div>
       <Calendar
-        multiple
-        value={selectedDates}
+        value={selectedDate}
         onChange={handleDateChange}
       />
       <button onClick={handleSaveButtonClick}>Save</button>

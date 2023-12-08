@@ -5,10 +5,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
-
 export default function TimePickerValue() {
-  const [earliestTime, setEarliestTime] = React.useState(dayjs('2022-04-17T15:30'));
-  const [latestTime, setLatestTime] = React.useState(dayjs('2022-04-17T15:30'));
+  const [earliestTime, setEarliestTime] = React.useState(dayjs()); // Default to the current time
+  const [latestTime, setLatestTime] = React.useState(dayjs()); // Default to the current time
 
   const handleNextButtonClick = async () => {
     try {
@@ -18,7 +17,11 @@ export default function TimePickerValue() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ earliestTime: earliestTime.format(), latestTime: latestTime.format() }),
+        // Sending earliest and latest times in ISO format
+        body: JSON.stringify({
+          earliestTime: earliestTime.format('HH:mm'), // Format to display only the time part
+          latestTime: latestTime.format('HH:mm'), // Format to display only the time part
+        }),
       });
 
       if (response.ok) {
@@ -27,6 +30,7 @@ export default function TimePickerValue() {
       } else {
         // Handle error response
         console.error('Failed to send times to the backend');
+        console.log(earliestTime.format('HH:mm'), latestTime.format('HH:mm'));
       }
     } catch (error) {
       console.error('Error during backend communication:', error);
@@ -39,7 +43,7 @@ export default function TimePickerValue() {
         <div className='time-pick-container'>
           <TimePicker
             label="Earliest possible"
-            defaultValue={dayjs('2022-04-17T15:30')}
+            value={earliestTime}
             onChange={(newValue) => setEarliestTime(newValue)}
           />
           <TimePicker
@@ -47,7 +51,7 @@ export default function TimePickerValue() {
             value={latestTime}
             onChange={(newValue) => setLatestTime(newValue)}
           />
-         <div><button onClick={handleNextButtonClick}>Save</button></div>
+          <div><button onClick={handleNextButtonClick}>Save</button></div>
         </div>
       </DemoContainer>
     </LocalizationProvider>

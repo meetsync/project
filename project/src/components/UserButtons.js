@@ -19,6 +19,7 @@ function UserButtons() {
     return emailRegex.test(email);
   };
 
+  // FOR NEW USERS (REGISTRATION)
   const handleRegistration = async () => {
     if (isNewUser) {
       // Validate email and password in the frontend (add more robust validation).
@@ -26,20 +27,19 @@ function UserButtons() {
         alert('Please provide a valid email and password.');
         return;
       }
-  
+
       // Check if email is in the correct format
       if (!validateEmail(email)) {
         alert('Please provide a valid email address.');
         return;
       }
-  
+
       // Prepare registration data
       const registrationData = { name, email, password };
-      
       const registrationEndpoint = '/api/Register';
-  
+
       // Send a registration request to your backend.
-      try { // at the moment of writing this code I am unsure what server or api to make a request too
+      try {
         const response = await fetch(registrationEndpoint, {
           method: 'POST',
           headers: {
@@ -47,19 +47,21 @@ function UserButtons() {
           },
           body: JSON.stringify(registrationData),
         });
-  
+
         // Log the URL used in the request
-        console.log('Request URL:', registrationEndpoint);
-  
+       // console.log('Request URL:', registrationEndpoint);
+
         // Log the response status code
         console.log('Response status code:', response.status);
-  
+
         if (response.ok) {
           // Registration was successful, handle as needed
           alert('Registration successful!');
+          console.log('Registration Data:', registrationData);
         } else {
           // Handle non-JSON responses or other errors
           alert('An error occurred during registration.');
+          console.log(registrationData)
         }
       } catch (error) {
         console.error('Registration error:', error);
@@ -68,117 +70,115 @@ function UserButtons() {
     }
   };
 
+  // FOR RETURNING USERS (LOGIN)
+  const handleLogin = async () => {
+    if (isReturningUser) {
+      // Validate email and password in the frontend (add more robust validation).
+      if (!email || !password) {
+        alert('Please provide a valid email and password.');
+        return;
+      }
 
-// FOR RETURNING USERS
+      // Check if email is in the correct format
+      if (!validateEmail(email)) {
+        alert('Please provide a valid email address.');
+        return;
+      }
 
-const handleLogin = async () => {
-  if (isReturningUser) {
-    // Validate email and password in the frontend (add more robust validation).
-    if (!email || !password) {
-      alert('Please provide a valid email and password.');
-      return;
-    }
+      // Prepare login data
+      const loginData = { email, password };
 
-    // Check if email is in the correct format
-    if (!validateEmail(email)) {
-      alert('Please provide a valid email address.');
-      return;
-    }
+      // Send a login request to your backend
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(loginData),
+        });
 
-    // Prepare login data
-    const loginData = { email, password };
+        console.log('Request URL:', '/api/login');
+        console.log('Response status code:', response.status);
 
-    // Send a login request to your backend
-    try { // at the moment of writing this code I am unsure what server or api to make a request too
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      console.log('Request URL:', '/api/login');
-      console.log('Response status code:', response.status);
-
-      if (response.status === 200) {
-        // Login was successful, handle as needed
-        alert('Login successful!');
-      } else if (response.status === 400) {
-        alert('User not found');
-      } else if (response.status === 401) {
-        alert('Invalid password');
-      } else {
+        if (response.status === 200) {
+          // Login was successful, handle as needed
+          alert('Login successful!');
+          console.log('Login Data:', loginData);
+        } else if (response.status === 400) {
+          alert('User not found');
+        } else if (response.status === 401) {
+          alert('Invalid password');
+        } else {
+          alert('An error occurred during login.');
+          console.log(loginData)
+        }
+      } catch (error) {
+        console.error('Login error:', error);
         alert('An error occurred during login.');
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('An error occurred during login.');
     }
-  }
-};
+  };
 
-return (
-  <div className='app-container '>
-  <div className="user-buttons">
-    <div className="user-input-container">
-      {isNewUser && (
-        <div>
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+  return (
+    <div className='app-container '>
+      <div className="user-buttons">
+        <div className="user-input-container">
+          {isNewUser && (
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+          )}
+          <div>
+            <input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
         </div>
-      )}
-      <div>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="buttons">
+        <button
+            className="common-button-container"
+            onClick={() => handleUserButtonClick(true)}
+          >
+            New User
+          </button>
+          <button
+            className="common-button-container"
+            onClick={() => {
+              handleUserButtonClick(false);
+              setIsReturningUser(true);
+            }}
+          >
+            Returning User
+          </button>
+          <button
+            className="common-button-container"
+            onClick={isNewUser ? handleRegistration : handleLogin}
+          >
+            {isNewUser ? 'Register' : 'Login'}
+          </button>
+        </div>
       </div>
     </div>
-    <div className="buttons">
-      <button
-        className="common-button-container"
-        onClick={() => handleUserButtonClick(true)}
-      >
-        New User
-      </button>
-      <button
-        className="common-button-container"
-        onClick={() => {
-          handleUserButtonClick(false);
-          setIsReturningUser(true);
-        }}
-      >
-        Returning User
-      </button>
-      <button
-        className="common-button-container"
-        onClick={isReturningUser ? handleLogin : handleRegistration}
-      >
-        {isReturningUser ? 'Login' : 'Register'}
-      </button>
-    </div>
-  </div>
-  </div>
   
-);
+  );
 }
 
 export default UserButtons;
 
-  
- 
