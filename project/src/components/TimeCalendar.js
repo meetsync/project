@@ -1,8 +1,8 @@
-// TimeCalendar.js
 import React, { Component } from 'react';
-//import '../style/TimeCalendar.css'; 
+import dayjs from 'dayjs';
 
 class TimeCalendar extends Component {
+  
   constructor() {
     super();
     this.state = {
@@ -19,27 +19,19 @@ class TimeCalendar extends Component {
   };
 
   render() {
-    const timeSlots = [
-      '9:00 AM',
-      '9:30 AM',
-      '10:00 AM',
-      '11:00 AM',
-      '12:00 PM',
-      '1:00 PM',
-      '2:00 PM',
-      '3:00 PM',
-      '4:00 PM',
-      '5:00 PM',
-    ];
+    
+    const { earliestTime, latestTime } = this.props;
+    console.log(earliestTime, latestTime);
+
+    const timeSlots = generateTimeSlots(earliestTime, latestTime);
 
     return (
-      <div className="time-calendar size">
+      <div className="time-calendar-size">
         <table>
           <thead>
             <tr>
               <th>Time</th>
-              <th></th>
-              
+              <th>Select Your Time</th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +56,20 @@ class TimeCalendar extends Component {
       </div>
     );
   }
+}
+
+function generateTimeSlots(earliestTime, latestTime) {
+  //dayjs.extend(isSameOrBefore);
+
+   const timeSlots = [];
+  let currentTime = dayjs(earliestTime);
+
+  while (currentTime.isBefore(latestTime)) {
+    timeSlots.push(currentTime.format('h:mm A'));
+    currentTime = currentTime.add(30, 'minutes');
+  }
+
+  return timeSlots;
 }
 
 export default TimeCalendar;

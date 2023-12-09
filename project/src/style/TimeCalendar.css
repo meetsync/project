@@ -24,17 +24,23 @@
   }
 
   /* TimeCalendar.css */
-.time-calendar.size {
+.time-calendar-size {
     margin: 20px auto;
     width: 30%; /* Adjust the width as needed */
     margin-top: -300px;
-  }
+}
   
   table {
     border-collapse: collapse;
     width: 100%;
   }
   
-
+ 
   
-  
+  .centered-time-calendar {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Adjust the width as needed */
+  }

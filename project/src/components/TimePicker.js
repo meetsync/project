@@ -4,14 +4,17 @@ import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import TimeList from './TimeList';
 import NextButton from './NextButton';
 import '../style/TimeCalendar.css'; 
+import TimeCalendar from './TimeCalendar';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 
 export default function TimePickerValue() {
-  const [earliestTime, setEarliestTime] = useState(dayjs());
-  const [latestTime, setLatestTime] = useState(dayjs());
+  const [earliestTime, setEarliestTime] = useState(dayjs()); 
+  const [latestTime, setLatestTime] = useState(dayjs()); // default value is the current time at the moment 
+  
+
   
 
   const handleNextButtonClick = async () => {
@@ -23,8 +26,8 @@ export default function TimePickerValue() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          earliestTime: earliestTime.format('YYYY-MM-DD hh:mm A'),
-          latestTime: latestTime.format('YYYY-MM-DD hh:mm A'),
+          earliestTime: earliestTime.format('hh:mm A'),
+          latestTime: latestTime.format('hh:mm A'),
         }),
       });
 
@@ -40,21 +43,30 @@ export default function TimePickerValue() {
     } catch (error) {
       console.error('Error during backend communication:', error);
     }
+    console.log(earliestTime , latestTime);
+
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['TimePicker', 'TimePicker']}>
-      <div className='time-picker-container'>
-          <div className='time-lists'>
-            <TimeList label="Earliest Possible" onChange={setEarliestTime} />
-            <TimeList label="Latest Possible" onChange={setLatestTime} />
-          </div>
-          <div className='save-time-button'>
-          <NextButton onClick={handleNextButtonClick}>Save</NextButton>
-          </div>
-          </div>
-      </DemoContainer>
-    </LocalizationProvider>
+    <DemoContainer components={['TimePicker', 'TimePicker']}>
+      <div className='time-pick-container'>
+        <TimePicker
+          label="Earliest possible"
+          value={earliestTime}
+          onChange={(newValue) => setEarliestTime(newValue)}
+        />
+        <TimePicker
+          label="Latest possible"
+          value={latestTime}
+          onChange={(newValue) => setLatestTime(newValue)}
+        />
+        <div><NextButton onClick={handleNextButtonClick}>Save</NextButton></div>
+      </div>
+      <div className='centered-time-calendar'>
+          <TimeCalendar earliestTime={earliestTime} latestTime={latestTime} />
+      </div>
+    </DemoContainer>
+  </LocalizationProvider>   
   );
 }
