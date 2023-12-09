@@ -1,26 +1,27 @@
 import * as React from 'react';
+import { useState } from 'react';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-
+//Timepicker.js
 export default function TimePickerValue() {
-  const [earliestTime, setEarliestTime] = React.useState(dayjs()); // Default to the current time
-  const [latestTime, setLatestTime] = React.useState(dayjs()); // Default to the current time
+  const [earliestTime, setEarliestTime] = useState(dayjs()); // Default to the current time
+  const [latestTime, setLatestTime] = useState(dayjs()); // Default to the current time
 
   const handleNextButtonClick = async () => {
     try {
       // Perform backend communication here using fetch or another method
-      const response = await fetch('Our Api', {
+      const response = await fetch('Your Api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        // Sending earliest and latest times in ISO format
+        // Sending earliest and latest times in 12-hour clock format with AM/PM
         body: JSON.stringify({
-          earliestTime: earliestTime.format('HH:mm'), // Format to display only the time part
-          latestTime: latestTime.format('HH:mm'), // Format to display only the time part
+          earliestTime: earliestTime.format('hh:mm A'), // 12-hour clock with AM/PM
+          latestTime: latestTime.format('hh:mm A'), // 12-hour clock with AM/PM
         }),
       });
 
@@ -30,8 +31,10 @@ export default function TimePickerValue() {
       } else {
         // Handle error response
         console.error('Failed to send times to the backend');
-        console.log(earliestTime.format('HH:mm'), latestTime.format('HH:mm'));
-      }
+        console.log( {
+          earliestTime: earliestTime.format('hh:mm A'),
+          latestTime: latestTime.format('hh:mm A'),
+        });      }
     } catch (error) {
       console.error('Error during backend communication:', error);
     }

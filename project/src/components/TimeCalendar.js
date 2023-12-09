@@ -38,20 +38,15 @@ class TimeCalendar extends Component {
           <thead>
             <tr>
               <th>Time</th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-              <th>Sunday</th>
+              <th></th>
+              
             </tr>
           </thead>
           <tbody>
             {timeSlots.map((time, index) => (
               <tr key={index}>
                 <td>{time}</td>
-                {[0, 1, 2, 3, 4,5,6].map((day) => (
+                {[0].map((day) => (
                   <td
                     key={day}
                     className={`slot ${
@@ -72,4 +67,3 @@ class TimeCalendar extends Component {
 }
 
 export default TimeCalendar;
-
