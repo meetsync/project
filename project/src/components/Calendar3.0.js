@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
+import NextButton from "./NextButton";
 
 export default function Calender3() {
   const today = new Date();
@@ -45,7 +46,7 @@ export default function Calender3() {
         value={selectedDate}
         onChange={handleDateChange}
       />
-      <button onClick={handleSaveButtonClick}>Save</button>
+      <NextButton onClick={handleSaveButtonClick}>Save</NextButton>
     </div>
   );
 }

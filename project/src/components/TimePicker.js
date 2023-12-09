@@ -1,14 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-//Timepicker.js
+import TimeList from './TimeList';
+import NextButton from './NextButton';
+import '../style/TimeCalendar.css'; 
+
+
 export default function TimePickerValue() {
-  const [earliestTime, setEarliestTime] = useState(dayjs()); // Default to the current time
-  const [latestTime, setLatestTime] = useState(dayjs()); // Default to the current time
+  const [earliestTime, setEarliestTime] = useState(dayjs());
+  const [latestTime, setLatestTime] = useState(dayjs());
+  
 
   const handleNextButtonClick = async () => {
     try {
@@ -18,23 +22,21 @@ export default function TimePickerValue() {
         headers: {
           'Content-Type': 'application/json',
         },
-        // Sending earliest and latest times in 12-hour clock format with AM/PM
         body: JSON.stringify({
-          earliestTime: earliestTime.format('hh:mm A'), // 12-hour clock with AM/PM
-          latestTime: latestTime.format('hh:mm A'), // 12-hour clock with AM/PM
+          earliestTime: earliestTime.format('YYYY-MM-DD hh:mm A'),
+          latestTime: latestTime.format('YYYY-MM-DD hh:mm A'),
         }),
       });
 
       if (response.ok) {
-        // Handle successful response
         console.log('Times successfully sent to the backend!');
       } else {
-        // Handle error response
         console.error('Failed to send times to the backend');
-        console.log( {
+        console.log({
           earliestTime: earliestTime.format('hh:mm A'),
           latestTime: latestTime.format('hh:mm A'),
-        });      }
+        });
+      }
     } catch (error) {
       console.error('Error during backend communication:', error);
     }
@@ -43,19 +45,15 @@ export default function TimePickerValue() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimePicker', 'TimePicker']}>
-        <div className='time-pick-container'>
-          <TimePicker
-            label="Earliest possible"
-            value={earliestTime}
-            onChange={(newValue) => setEarliestTime(newValue)}
-          />
-          <TimePicker
-            label="Latest possible"
-            value={latestTime}
-            onChange={(newValue) => setLatestTime(newValue)}
-          />
-          <div><button onClick={handleNextButtonClick}>Save</button></div>
-        </div>
+      <div className='time-picker-container'>
+          <div className='time-lists'>
+            <TimeList label="Earliest Possible" onChange={setEarliestTime} />
+            <TimeList label="Latest Possible" onChange={setLatestTime} />
+          </div>
+          <div className='save-time-button'>
+          <NextButton onClick={handleNextButtonClick}>Save</NextButton>
+          </div>
+          </div>
       </DemoContainer>
     </LocalizationProvider>
   );

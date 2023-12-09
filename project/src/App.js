@@ -10,21 +10,14 @@ import { EventDetail } from './pages/EventDetail';
 import TimePickerValue from './components/TimePicker';
 import UserButtons from './components/UserButtons';
 import Calender3 from './components/Calendar3.0';
+import React from 'react';
 import TimeCalendar from './components/TimeCalendar';
-import React, { useState } from 'react';
-import dayjs from 'dayjs';
 
 
 
 function App() {
-  const [times, setTimes] = useState({
-    earliestTime: dayjs(),
-    latestTime: dayjs(),
-  });
+  
 
-  const handleTimesChange = (newTimes) => {
-    setTimes(newTimes);
-  };
 
   return (
     <React.Fragment>
@@ -38,11 +31,11 @@ function App() {
         <div className='calendar3'>
           <Calender3 />
         </div>
-        <TimePickerValue times={times} onTimesChange={handleTimesChange} />
+        <TimePickerValue />
         <div className='test'>
           <UserButtons />
         </div>
-        <TimeCalendar earliestTime={times.earliestTime} latestTime={times.latestTime} />
+        < TimeCalendar></TimeCalendar>
       </BrowserRouter>
     </React.Fragment>
   );

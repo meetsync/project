@@ -1,6 +1,6 @@
 // TimeCalendar.js
 import React, { Component } from 'react';
-import '../style/TimeCalendar.css'; // Adjust the path as needed
+//import '../style/TimeCalendar.css'; 
 
 class TimeCalendar extends Component {
   constructor() {

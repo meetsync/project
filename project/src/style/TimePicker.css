@@ -10,6 +10,15 @@
 
 
 .time-picker-container {
-    width: 150px; /* Same width as the time picker */
-    float: left;
+    display: flex;
+    flex-direction: column;
+
 }
+.time-lists {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .save-time-button{
+    align-self: flex-start;
+  }

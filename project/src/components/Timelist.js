@@ -5,6 +5,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 export default function TimeList({ label, onChange }) {
   const [selectedTime, setSelectedTime] = useState(dayjs());
 
+
   const handleTimeChange = (newValue) => {
     setSelectedTime(newValue);
     onChange(newValue);
@@ -14,7 +15,6 @@ export default function TimeList({ label, onChange }) {
     <div>
       <label>{label}</label>
       <TimePicker
-        label={`Select ${label.toLowerCase()}`}
         value={selectedTime}
         onChange={handleTimeChange}
       />
