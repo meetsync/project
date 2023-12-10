@@ -38,15 +38,18 @@ export default function Calender3() {
     } catch (error) {
       console.error('Error during backend communication:', error);
     }
+ 
   };
 
   return (
+    <div className="left-container">
     <div>
       <Calendar
         value={selectedDate}
         onChange={handleDateChange}
       />
       <NextButton onClick={handleSaveButtonClick}>Save</NextButton>
+    </div>
     </div>
   );
 }

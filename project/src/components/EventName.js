@@ -44,9 +44,11 @@ function EventForm() {
     } catch (error) {
       console.error('Error during backend communication:', error);
     }
+    
   };
 
   return (
+
     <div className="container">
       {showEventName ? (
         <div>

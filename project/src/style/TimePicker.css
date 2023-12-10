@@ -6,12 +6,14 @@
     height: auto; /* Keep the same height regardless of screen size */
     font-size: 14px;
     float: left;
+    margin: 50px;
 }
 
 
 .time-picker-container {
     display: flex;
     flex-direction: column;
+
 
 }
 .time-lists {

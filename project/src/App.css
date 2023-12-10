@@ -10,3 +10,31 @@
     font-size: medium;
 }
 
+.left-container,
+.middle-container {
+  height: 100vh; /* Set the height to 100% of the viewport height */
+  width: 33%; /* Each container takes 33.33% of the viewport width with a gap of 20px */
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 20px;
+  vertical-align: top; /* Align containers at the top */
+}
+
+.right-container {
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    width: 33%; /* Each container takes 33.33% of the viewport width with a gap of 20px */
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px;
+    vertical-align: top; /* Align containers at the top */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  
+
+
+

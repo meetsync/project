@@ -11,6 +11,7 @@ import TimePickerValue from './components/TimePicker';
 import UserButtons from './components/UserButtons';
 import Calender3 from './components/Calendar3.0';
 import React from 'react';
+import AllComponentsWrapper from './components/CreateEvent';
 //import TimeCalendar from './components/TimeCalendar';
 
 
@@ -35,7 +36,6 @@ function App() {
         <div className='test'>
           <UserButtons />
         </div>
-        
       </BrowserRouter>
     </React.Fragment>
   );
