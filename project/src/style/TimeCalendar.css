@@ -28,6 +28,10 @@
     margin: 20px auto;
     width: 30%; /* Adjust the width as needed */
     margin-top: -300px;
+    height: 500px; /* Allow the height to adjust dynamically */
+    overflow-y: auto; /* Allow vertical overflow with a scrollbar if needed */
+
+
 }
   
   table {
@@ -43,4 +47,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%; /* Adjust the width as needed */
+
   }

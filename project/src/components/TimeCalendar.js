@@ -60,11 +60,12 @@ class TimeCalendar extends Component {
 
 function generateTimeSlots(earliestTime, latestTime) {
   //dayjs.extend(isSameOrBefore);
-
+  var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+    dayjs.extend(isSameOrBefore)
    const timeSlots = [];
   let currentTime = dayjs(earliestTime);
 
-  while (currentTime.isBefore(latestTime)) {
+  while (currentTime.isSameOrBefore(latestTime)) {
     timeSlots.push(currentTime.format('h:mm A'));
     currentTime = currentTime.add(30, 'minutes');
   }

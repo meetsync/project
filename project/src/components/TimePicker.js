@@ -55,11 +55,14 @@ export default function TimePickerValue() {
           label="Earliest possible"
           value={earliestTime}
           onChange={(newValue) => setEarliestTime(newValue)}
+          minutesStep={15}
+
         />
         <TimePicker
           label="Latest possible"
           value={latestTime}
           onChange={(newValue) => setLatestTime(newValue)}
+          minutesStep={15}
         />
         <div><NextButton onClick={handleNextButtonClick}>Save</NextButton></div>
       </div>
