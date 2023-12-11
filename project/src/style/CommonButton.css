@@ -13,8 +13,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -430px; /* Adjust the value as needed */
-margin-right: 75px;  
+margin-right: 75px;
+margin-top: -430px; /* Adjust the value as needed */
+
 }
 
 

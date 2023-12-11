@@ -6,12 +6,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Events from './pages/Events';
-import { EventDetail } from './pages/EventDetail';
-import TimePickerValue from './components/TimePicker';
-import UserButtons from './components/UserButtons';
-import Calender3 from './components/Calendar3.0';
+import { useParams } from 'react-router-dom';
+//import { EventDetail } from './pages/EventDetail';
+//import TimePickerValue from './components/TimePicker';
+//import UserButtons from './components/UserButtons';
+//import Calender3 from './components/Calendar3.0';
 import React from 'react';
-import AllComponentsWrapper from './components/CreateEvent';
+import ParticipantPage from './pages/ParticipantPage'; // Update the path accordingly
+import EventForm from './components/EventName';
+
 //import TimeCalendar from './components/TimeCalendar';
 
 
@@ -25,17 +28,10 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/events' element={<Events />} />
-          <Route path='/events/:id' element={<EventDetail />} />
+          <Route path='/events/:id' element={<ParticipantPage  />} />
         </Routes>
-        <div className='calendar3'>
-          <Calender3 />
-        </div>
-        <TimePickerValue />
-        <div className='test'>
-          <UserButtons />
-        </div>
       </BrowserRouter>
     </React.Fragment>
   );

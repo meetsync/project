@@ -3,6 +3,8 @@ import React from 'react'
 export const AllEventList =[
     {eventId:12345,
     eventName: "Wedding Party",
+    earliestTime:"5:00 PM",
+    lastestTime : "10:00 PM",
     eventStartDate:"10-11-2023",
     eventEndDate:"10-24-2023",
     link:"12345",

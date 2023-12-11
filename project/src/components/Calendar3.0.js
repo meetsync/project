@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
 import NextButton from "./NextButton";
 
-export default function Calender3() {
+export default function Calendar3() {
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);

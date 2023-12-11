@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import 'dayjs/plugin/isSameOrBefore'; // Import the plugin separately
 
 class TimeCalendar extends Component {
   constructor() {
@@ -21,13 +22,11 @@ class TimeCalendar extends Component {
   getSelectedSlots = () => {
     return this.state.selectedSlots.map((slot) => slot.replace(/\s\d+$/, ''));
   };
-  
-  
 
   render() {
     const { earliestTime, latestTime } = this.props;
 
-    const timeSlots = generateTimeSlots(earliestTime, latestTime);
+    const timeSlots = this.generateTimeSlots(earliestTime, latestTime);
 
     return (
       <div className='grid'>
@@ -62,22 +61,25 @@ class TimeCalendar extends Component {
       </div>
     );
   }
-}
 
-function generateTimeSlots(earliestTime, latestTime) {
-  var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
-  dayjs.extend(isSameOrBefore);
+  generateTimeSlots(earliestTime, latestTime) {
+    var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
+    dayjs.extend(isSameOrBefore);
+    const timeSlots = [];
+    let currentTime = dayjs(earliestTime);
 
-  const timeSlots = [];
-  let currentTime = dayjs(earliestTime);
+    while (currentTime.isSameOrBefore(latestTime)) {
+      timeSlots.push(currentTime.format('h:mm A'));
+      currentTime = currentTime.add(30, 'minute');
+    }
 
-  while (currentTime.isSameOrBefore(latestTime)) {
-    timeSlots.push(currentTime.format('h:mm A'));
-    currentTime = currentTime.add(30, 'minute');
+    return timeSlots;
   }
-
-  return timeSlots;
 }
-
 
 export default TimeCalendar;
+
+
+
+
+

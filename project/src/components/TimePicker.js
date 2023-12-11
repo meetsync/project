@@ -8,9 +8,9 @@ import '../style/TimeCalendar.css';
 import TimeCalendar from './TimeCalendar';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
-export default function TimePickerValue() {
-  const [earliestTime, setEarliestTime] = useState(dayjs()); 
-  const [latestTime, setLatestTime] = useState(dayjs());
+export default function TimePickerValue({ defaultEarliestTime, defaultLatestTime }) {
+  const [earliestTime, setEarliestTime] = useState(dayjs(defaultEarliestTime)); 
+  const [latestTime, setLatestTime] = useState(dayjs(defaultLatestTime));
   const timeCalendarRef = useRef(); // Create a ref for TimeCalendar
 
   const handleNextButtonClick = async () => {
@@ -68,6 +68,7 @@ export default function TimePickerValue() {
           {/* Pass the ref to TimeCalendar */}
           <TimeCalendar ref={timeCalendarRef} earliestTime={earliestTime} latestTime={latestTime} />
         </div>
+
       </DemoContainer>
     </LocalizationProvider>   
   );
