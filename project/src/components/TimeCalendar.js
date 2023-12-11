@@ -16,12 +16,16 @@ class TimeCalendar extends Component {
       selectedSlots: prevState.selectedSlots.includes(time)
         ? prevState.selectedSlots.filter((slot) => slot !== time)
         : [...prevState.selectedSlots, time],
-    }));
+    }), () => {
+
+      // Callback to parent component when selectedSlots change
+      if (this.props.onSelectedSlotsChange) {
+        this.props.onSelectedSlotsChange(this.state.selectedSlots);
+      }
+    });
   };
 
-  getSelectedSlots = () => {
-    return this.state.selectedSlots.map((slot) => slot.replace(/\s\d+$/, ''));
-  };
+ 
 
   render() {
     const { earliestTime, latestTime } = this.props;
@@ -78,8 +82,5 @@ class TimeCalendar extends Component {
 }
 
 export default TimeCalendar;
-
-
-
 
 

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
-import NextButton from "./NextButton";
 
-export default function Calendar3() {
+export default function Calendar3({ onSubmit }) {
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -11,35 +10,16 @@ export default function Calendar3() {
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
-  };
+    const { year, day, month } = selectedDate;
 
-  const handleSaveButtonClick = async () => {
-    try {
-      // Extract year, day, and month from the selectedDate
-      const { year, day, month } = selectedDate;
 
-      // Perform backend communication here using fetch 
-      const response = await fetch('our api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ year, day, month }),
-      });
-  
-      if (response.ok) {
-        // Handle successful response
-        console.log('Date successfully sent to the backend!');
-      } else {
-        // Handle error response
-        console.error('Failed to send date to the backend api not made yet');
-        console.log(year, day, month);
-      }
-    } catch (error) {
-      console.error('Error during backend communication:', error);
+    if (onSubmit) {
+      onSubmit({ year,day,month });
     }
- 
   };
+
+  
+  
 
   return (
     <div className="left-container">
@@ -48,8 +28,7 @@ export default function Calendar3() {
         value={selectedDate}
         onChange={handleDateChange}
       />
-      <NextButton onClick={handleSaveButtonClick}>Save</NextButton>
     </div>
     </div>
   );
-}
+  }
