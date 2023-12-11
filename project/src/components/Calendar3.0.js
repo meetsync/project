@@ -10,7 +10,7 @@ export default function Calendar3({ onSubmit }) {
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
-    const { year, day, month } = selectedDate;
+    const { year, day, month } = newDate;
 
 
     if (onSubmit) {
