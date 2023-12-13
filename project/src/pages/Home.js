@@ -4,6 +4,7 @@ import TimePickerValue from '../components/TimePicker'
 import UserButtons from '../components/UserButtons'
 import Calendar3 from '../components/Calendar3.0'
 import { useState, useEffect, useCallback } from 'react'
+
 export default function Home() {
 
   const [eventNameData, setEvenNameData] = useState({});
@@ -13,6 +14,12 @@ export default function Home() {
   const [timePickerData, setTimePickerData] = useState({});
 
   const [selectedSlots, setSelectedSlots] = useState([]);
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  const handleUserLoggedIn = () => {
+    setIsUserLoggedIn(true);
+  };
 
 
   const handleTimePickerSubmit = useCallback((data) => {
@@ -92,11 +99,13 @@ export default function Home() {
         <Calendar3 onSubmit={handleCalendarSubmit} />
         </div>       
         <TimePickerValue onSubmit={handleTimePickerSubmit} onSelectedSlotsChange={handleSelectedSlotsChange}/>
-        <div className='test'>
-          <UserButtons></UserButtons>
-        </div>
-        <button onClick={handleConfirmEventButton}>Confirm Event</button>
-
+        {!isUserLoggedIn ? (
+      <UserButtons onUserLoggedIn={handleUserLoggedIn} />
+       ) : (
+      <div className='confirm-button'>
+      <button className='common-button-container' onClick={handleConfirmEventButton}>Confirm Event</button>
+      </div>
+      )}
     </div>
   )
 }

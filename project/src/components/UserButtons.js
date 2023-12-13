@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../style/CommonButton.css';
 
-function UserButtons() {
+function UserButtons({onUserLoggedIn}) {
   const [isNewUser, setIsNewUser] = useState(true);
   const [isReturningUser, setIsReturningUser] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const handleUserButtonClick = (isNew) => {
     setIsNewUser(isNew);
@@ -53,14 +54,17 @@ function UserButtons() {
 
         // Log the response status code
         console.log('Response status code:', response.status);
+        onUserLoggedIn();
 
         if (response.ok) {
           // Registration was successful, handle as needed
           alert('Registration successful!');
+         // onUserLoggedIn(); // Call the callback
           console.log('Registration Data:', registrationData);
         } else {
           // Handle non-JSON responses or other errors
           alert('An error occurred during registration.');
+         // onUserLoggedIn();
           console.log(registrationData)
         }
       } catch (error) {
@@ -100,10 +104,11 @@ function UserButtons() {
 
         console.log('Request URL:', '/api/login');
         console.log('Response status code:', response.status);
-
+        onUserLoggedIn();
         if (response.status === 200) {
           // Login was successful, handle as needed
           alert('Login successful!');
+         // onUserLoggedIn();
           console.log('Login Data:', loginData);
         } else if (response.status === 400) {
           alert('User not found');
